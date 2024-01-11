@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import "./NotePage.css"
+
 function NotePage() {
   const { id } = useParams();
   const [note, setNote] = useState(null);
@@ -45,10 +48,14 @@ function NotePage() {
      })
    }
   return (
-    <div>
-        <Link onClick={handleUpdate}  to="/">Home</Link><br/>
-        {id!=='new'?( <Link onClick={deleteNote}  to="/">Delete Notes</Link>):(<Link onClick={createNote } to="/">Done</Link>)}
-        <textarea onChange={(e)=>{
+    <div className="Note">
+        <Link onClick={handleUpdate}  to="/"><Button>Back</Button></Link><br/>
+        {id!=='new'?( <Link onClick={deleteNote}  to="/"><Button>Delete</Button></Link>):(<Link onClick={createNote } to="/"><Button>Done</Button></Link>)}
+        <textarea  style={{
+          height:300,
+  
+     width:500,
+        }} onChange={(e)=>{
           setNote({...note,'body':e.target.value})
         }} defaultValue={note?.body}></textarea>
 
